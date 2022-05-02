@@ -1,0 +1,16 @@
+{
+	"editor.formatOnSave": true,
+	"files.autoSave": "onFocusChange",
+	"[svelte]": {
+		"editor.defaultFormatter": "svelte.svelte-vscode"
+	},
+	"typescript.tsserver.experimental.enableProjectDiagnostics": true,
+	"editor.quickSuggestions": {
+		"strings": true
+	},
+	"eslint.validate": [
+		"javascript",
+		"javascriptreact",
+		"svelte"
+	]
+}

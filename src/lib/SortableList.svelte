@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onDestroy } from 'svelte';
-	import Sortable, { type Options } from 'sortablejs';
+	import Sortable, { MultiDrag, Swap, type Options } from 'sortablejs';
 
 	let list: HTMLElement;
 	let sortable: Sortable;

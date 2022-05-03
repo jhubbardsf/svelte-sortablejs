@@ -2,27 +2,26 @@
 	import type { Options } from 'sortablejs';
 	import Slider from '@bulatdashiev/svelte-slider';
 	import SortableList from '$lib/SortableList.svelte';
+	import SortableItem from '$lib/SortableItem.svelte';
 	import { FontAwesomeIcon } from 'fontawesome-svelte';
 	import { library } from '@fortawesome/fontawesome-svg-core';
 	import { faArrowsAlt } from '@fortawesome/free-solid-svg-icons';
 
 	library.add(faArrowsAlt);
 
+	type ItemList = { item: string; filtered?: boolean }[];
+	type SelectOption = { isHorizontal: boolean; text: string };
+
 	let invertSwap = false;
 	let isHorizontal = true;
-	let sliderValue: [number, number] = [0.5, 1];
 	let options: Options[] = Array(8);
 	let selectOptions: SelectOption[] = [
 		{ isHorizontal: true, text: 'Horizontal' },
 		{ isHorizontal: false, text: 'Vertical' }
 	];
+	let sliderValue: [number, number] = [0.5, 1];
 	let selected = selectOptions[0];
-
 	$: boxWidth = 200 * sliderValue[0];
-	$: boxLeft = (200 - boxWidth) / 2;
-
-	type ItemList = { item: string; filtered?: boolean }[];
-	type SelectOption = { isHorizontal: boolean; text: string };
 
 	const exampleItems = ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5', 'Item 6'];
 	const exampleItemsFilter: ItemList = [
@@ -77,7 +76,7 @@
 
 	// Example 5 - Handle
 	options[5] = {
-		handle: '.handle', // handle's class
+		handle: '.cursor-grab', // handle's class
 		animation: 150
 	};
 
@@ -86,15 +85,30 @@
 		filter: '.filtered', // 'filtered' class is not draggable
 		animation: 150
 	};
+
+	// Example 7 - Threshold
+	$: options[7] = {
+		swapThreshold: sliderValue[0],
+		animation: 150
+	};
+
+	// Example 8 - Nesting
+	options[8] = {
+		group: 'nested',
+		animation: 150,
+		forceFallback: true,
+		swapThreshold: 0.65
+	};
 </script>
 
 <div class="container mb-4">
-	<h1>Welcome to Svelte-SortableJS.</h1>
+	<div class="border-b pb-2">
+		<h1 class="font-bold text-xl">Welcome to Svelte-SortableJS.</h1>
+		<div id="intro-text">This is the sandbox. Examples.</div>
+	</div>
 
-	<div id="intro-text">This is the sandbox. Examples.</div>
-
-	<div id="simple-list">
-		<h2>Example 1 - Simple List</h2>
+	<div id="simple-list" class="mt-4 border rounded p-6">
+		<h2 class="font-bold">Example 1 - Simple List</h2>
 
 		<SortableList class="list-group col" options={options[0]}>
 			{#each exampleItems as item}
@@ -105,11 +119,11 @@
 		</SortableList>
 	</div>
 
-	<div id="shared-list" class="mt-4">
-		<h2>Example 2 - Shared Lists</h2>
+	<div id="shared-list" class="mt-4 border rounded p-6">
+		<h2 class="font-bold">Example 2 - Shared Lists</h2>
 
-		<div class="d-flex">
-			<SortableList class="list-group col" options={options[1]}>
+		<div class="flex">
+			<SortableList class="list-group col mr-6" options={options[1]}>
 				{#each exampleItems as item}
 					<div class="list-group-item bg-secondary text-white">{item} - Group 1</div>
 				{/each}
@@ -123,11 +137,11 @@
 		</div>
 	</div>
 
-	<div id="clone-list" class="mt-4">
-		<h2>Example 3 - Cloning Lists</h2>
+	<div id="clone-list" class="mt-4 border rounded p-6">
+		<h2 class="font-bold">Example 3 - Cloning Lists</h2>
 
-		<div class="d-flex">
-			<SortableList class="list-group col" options={options[2]}>
+		<div class="flex">
+			<SortableList class="list-group col mr-6" options={options[2]}>
 				{#each exampleItems as item}
 					<div class="list-group-item bg-secondary text-white">{item} - Group 1</div>
 				{/each}
@@ -141,11 +155,11 @@
 		</div>
 	</div>
 
-	<div id="disable-list" class="mt-4">
-		<h2>Example 4 - Disable Sort/Clone on Left</h2>
+	<div id="disable-list" class="mt-4 border rounded p-6">
+		<h2 class="font-bold">Example 4 - Disable Sort/Clone on Left</h2>
 
-		<div class="d-flex">
-			<SortableList class="list-group col" options={options[3]}>
+		<div class="flex">
+			<SortableList class="list-group col mr-6" options={options[3]}>
 				{#each exampleItems as item}
 					<div class="list-group-item bg-secondary text-white">{item} - Group 1</div>
 				{/each}
@@ -159,21 +173,21 @@
 		</div>
 	</div>
 
-	<div id="handle-list" class="mt-4">
-		<h2>Example 5 - Handle</h2>
+	<div id="handle-list" class="mt-4 border rounded p-6">
+		<h2 class="font-bold">Example 5 - Handle</h2>
 
 		<SortableList class="list-group col" options={options[5]}>
 			{#each exampleItems as item}
 				<div class="list-group-item">
-					<FontAwesomeIcon icon={faArrowsAlt} class="handle" />
+					<FontAwesomeIcon icon={faArrowsAlt} class="cursor-grab" />
 					{item}
 				</div>
 			{/each}
 		</SortableList>
 	</div>
 
-	<div id="filter-list" class="mt-4">
-		<h2>Example 6 - Filter</h2>
+	<div id="filter-list" class="mt-4 border rounded p-6">
+		<h2 class="font-bold">Example 6 - Filter</h2>
 
 		<SortableList class="list-group col" options={options[6]}>
 			{#each exampleItemsFilter as item}
@@ -189,50 +203,88 @@
 		</SortableList>
 	</div>
 
-	<div id="threshold-list" class="mt-4">
-		<h2>Example 7 - Thresholds</h2>
-		Current Threshold: {sliderValue[0]}
-		<Slider min="0" max="1" step=".01" bind:value={sliderValue} />
-		<div>
-			Invert Swap: <input type="checkbox" bind:checked={invertSwap} />
-		</div>
-		<div>
-			Is Horizontal?:
-			<select bind:value={selected} on:change={updateSelection}>
-				{#each selectOptions as option}
-					<option value={option}>
-						{option.text}
-					</option>
-				{/each}
-			</select>
-		</div>
-		<div class="flex">
-			<div class="mr-10">
-				<div class="relative w-[200px]">
-					<div style="position: absolute; top:0; left:0;">
-						<div class="h-[200px] w-[200px] bg-blue-500" />
-					</div>
-					<div style="position: absolute; top:0; left:{boxLeft}px;">
-						<div class="h-[200px] bg-white opacity-50" style=" width: {boxWidth}px;" />
-					</div>
-				</div>
+	<div id="threshold-list" class="mt-4 border rounded p-6">
+		<div class="-mb-4">
+			<h2 class="font-bold">Example 7 - Thresholds</h2>
+			Current Threshold: {sliderValue[0]}
+			<Slider min="0" max="1" step=".01" bind:value={sliderValue} />
+			<div>
+				Invert Swap: <input type="checkbox" bind:checked={invertSwap} />
 			</div>
-			<div class="mr-10">
-				<div class="relative w-[200px]">
-					<div class="absolute top-0 left-0">
-						<div class="h-[200px] w-[200px] bg-blue-500" />
-					</div>
-					<div class="absolute top-0" style="left: {boxLeft}px">
-						<div class="h-[200px] bg-white opacity-50" style="width: {boxWidth}px;" />
-					</div>
-				</div>
+			<div>
+				Is Horizontal?:
+				<select bind:value={selected} on:change={updateSelection}>
+					{#each selectOptions as option}
+						<option value={option}>
+							{option.text}
+						</option>
+					{/each}
+				</select>
 			</div>
 		</div>
+		{#key options}
+			<SortableList class="flex" options={options[7]}>
+				<div class="h-[200px] w-[200px] border border-solid  mr-4 mt-4">
+					<div class="bg-red-500 m-auto h-full" style="width: {boxWidth}px;" />
+				</div>
+
+				<div class="h-[200px] w-[200px] border border-solid mr-4 mt-4">
+					<div class="bg-blue-500 m-auto h-full" style="width: {boxWidth}px;" />
+				</div>
+			</SortableList>
+		{/key}
+	</div>
+
+	<div id="nested-lists" class="mt-4 border rounded p-6">
+		<h2 class="font-bold">Example 7 - Nesting</h2>
+
+		<SortableList class="list-group col nested-sortable" options={options[8]}>
+			<div class="list-group-item nested-1">
+				Item 1.1
+				<SortableList class="list-group col nested-sortable" options={options[8]}>
+					<div class="list-group-item nested-2">Item 2.1</div>
+					<div class="list-group-item nested-2">
+						Item 2.2
+						<SortableList class="list-group col nested-sortable" options={options[8]}>
+							<div class="list-group-item nested-3">Item 3.1</div>
+							<div class="list-group-item nested-3">Item 3.2</div>
+							<div class="list-group-item nested-3">Item 3.3</div>
+							<div class="list-group-item nested-3">Item 3.4</div>
+						</SortableList>
+					</div>
+					<div class="list-group-item nested-2">Item 2.3</div>
+					<div class="list-group-item nested-2">Item 2.4</div>
+				</SortableList>
+			</div>
+			<div class="list-group-item nested-1">Item 1.2</div>
+			<div class="list-group-item nested-1">Item 1.3</div>
+			<div class="list-group-item nested-1">
+				Item 1.4
+				<SortableList class="list-group col nested-sortable" options={options[8]}>
+					<div class="list-group-item nested-2">Item 2.1</div>
+					<div class="list-group-item nested-2">Item 2.2</div>
+					<div class="list-group-item nested-2">Item 2.3</div>
+					<div class="list-group-item nested-2">Item 2.4</div>
+				</SortableList>
+			</div>
+			<div class="list-group-item nested-1">Item 1.5</div>
+		</SortableList>
 	</div>
 </div>
 
 <style>
-	:global(.handle) {
-		cursor: grab;
+	.nested-1 {
+		margin-bottom: 8px;
+		background-color: rgb(241, 241, 241);
+	}
+
+	.nested-2 {
+		margin-bottom: 8px;
+		background-color: rgb(221, 221, 221);
+	}
+
+	.nested-3 {
+		margin-bottom: 8px;
+		background-color: rgb(201, 201, 201);
 	}
 </style>

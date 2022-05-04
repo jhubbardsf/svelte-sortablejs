@@ -1,6 +1,12 @@
 {
-	"name": "sortablejs",
+	"name": "svelte-sortablejs",
 	"version": "0.0.1",
+	"author": "Josh Hubbard <josh@joshuahubbard.dev> (https://joshuahubbard.dev/)",
+	"description": "A Svelte wrapper for the Sortable.js library",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/jhubbardsf/svelte-sortablejs.git"
+	},
 	"scripts": {
 		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
@@ -42,5 +48,17 @@
 	"type": "module",
 	"dependencies": {
 		"sortablejs": "^1.15.0"
-	}
+	},
+	"keywords": [
+		"sortable",
+		"reorder",
+		"drag",
+		"meteor",
+		"angular",
+		"ng-sortable",
+		"react",
+		"vue",
+		"mixin"
+	],
+	"license": "MIT"
 }

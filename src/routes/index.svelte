@@ -2,7 +2,6 @@
 	import type { Options } from 'sortablejs';
 	import Slider from '@bulatdashiev/svelte-slider';
 	import SortableList from '$lib/SortableList.svelte';
-	import SortableItem from '$lib/SortableItem.svelte';
 	import { FontAwesomeIcon } from 'fontawesome-svelte';
 	import { library } from '@fortawesome/fontawesome-svg-core';
 	import { faArrowsAlt } from '@fortawesome/free-solid-svg-icons';

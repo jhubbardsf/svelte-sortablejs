@@ -1,11 +1,11 @@
 <script lang="ts">
-	import type { Options } from 'sortablejs';
 	import Slider from '@bulatdashiev/svelte-slider';
-	import SortableList from '$lib/SortableList.svelte';
+	import { SortableList } from '$lib/index';
 	import { FontAwesomeIcon } from 'fontawesome-svelte';
 	import { library } from '@fortawesome/fontawesome-svg-core';
 	import { faArrowsAlt } from '@fortawesome/free-solid-svg-icons';
 
+	//@ts-expect-error FA Bug
 	library.add(faArrowsAlt);
 
 	type ItemList = { item: string; filtered?: boolean }[];
@@ -19,8 +19,6 @@
 	let sliderValue: [number, number] = [0.5, 1];
 	$: selected = selectOptions[0];
 	$: boxWidth = 200 * sliderValue[0];
-
-	$: console.log({ selected });
 
 	const exampleItems = ['Item 1', 'Item 2', 'Item 3', 'Item 4', 'Item 5', 'Item 6'];
 	const exampleItemsFilter: ItemList = [
@@ -267,6 +265,30 @@
 			<div class="list-group-item nested-1">Item 1.5</div>
 		</SortableList>
 	</div>
+
+	<div id="handle-list" class="mt-4 border rounded p-6">
+		<h2 class="font-bold">Example 8 - MultiDrag</h2>
+
+		<SortableList class="list-group col" multiDragClass="selected" animation={150}>
+			{#each exampleItems as item}
+				<div class="list-group-item">
+					{item}
+				</div>
+			{/each}
+		</SortableList>
+	</div>
+
+	<div id="handle-list" class="mt-4 border rounded p-6">
+		<h2 class="font-bold">Example 8 - Swap</h2>
+
+		<SortableList class="list-group col" swapClass="highlight" animation={150}>
+			{#each exampleItems as item}
+				<div class="list-group-item">
+					{item}
+				</div>
+			{/each}
+		</SortableList>
+	</div>
 </div>
 
 <style>
@@ -283,5 +305,14 @@
 	.nested-3 {
 		margin-bottom: 8px;
 		background-color: rgb(201, 201, 201);
+	}
+
+	:global(.selected) {
+		background-color: #f9c7c8;
+		border: solid red 1px;
+	}
+
+	:global(.highlight) {
+		background-color: #9ab6f1;
 	}
 </style>

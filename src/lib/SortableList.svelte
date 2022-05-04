@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onDestroy } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import Sortable, { MultiDrag, Swap, type GroupOptions, type Options } from 'sortablejs';
 	import type { SortableEvent } from 'sortablejs';
 	import type { MoveEvent } from 'sortablejs';
@@ -9,25 +9,25 @@
 	let sortable: Sortable;
 	let className: string;
 	export { className as class };
-	export let options: Options = {};
+
+	// Plugin Options
+	export let multiDragClass: string | null = null;
+	export let swapClass: string | null = null;
 
 	// Default Options
 	export let group: string | GroupOptions | undefined = undefined;
 	export let sort = true;
 	export let disabled = false;
-	// export let store:
-	// 	| {
-	// 			get: (sortable: Sortable) => string[];
-	// 			set: (sortable: Sortable) => void;
-	// 	  }
-	// 	| undefined = undefined;
+	export let store:
+		| {
+				get: (sortable: Sortable) => string[];
+				set: (sortable: Sortable) => void;
+		  }
+		| undefined = undefined;
 	export let handle: string | undefined = undefined;
-	export let swapThreshold = 1;
-	// percentage; 0 <= x <= 1
+	export let swapThreshold = 1; // 0 <= x <= 1
 	export let invertSwap = false;
-	// invert always
-	// export let invertedSwapThreshold: number | undefined = undefined;
-	// will be set to same as swapThreshold if default
+	export let invertedSwapThreshold: number | undefined = undefined; // will be set to same as swapThreshold if default
 	export let removeCloneOnHide = true;
 	export let ghostClass = 'sortable-ghost';
 	export let chosenClass = 'sortable-chosen';
@@ -69,7 +69,7 @@
 	 * | 'initial'
 	 * | 'inherit'
 	 */
-	// export let easing: string | undefined = undefined;
+	export let easing: string | undefined = undefined;
 	export let dropBubble = false;
 	export let dragoverBubble = false;
 	export let dataIdAttr = 'data-id';
@@ -85,36 +85,37 @@
 	};
 	export let emptyInsertThreshold = 5;
 	export let direction: 'horizontal' | 'vertical' | undefined = undefined;
-	// export let touchStartThreshold: number | undefined = undefined;
-	// export let setData:
-	// 	| ((dataTransfer: DataTransfer, draggedElement: HTMLElement) => void)
-	// 	| undefined = undefined;
-	// export let draggable: string | undefined = undefined;
-	// export let onChoose: ((event: SortableEvent) => void) | undefined = undefined;
-	// export let onUnchoose: ((event: SortableEvent) => void) | undefined = undefined;
-	// export let onStart: ((event: SortableEvent) => void) | undefined = undefined;
-	// export let onEnd: ((event: SortableEvent) => void) | undefined = undefined;
-	// export let onAdd: ((event: SortableEvent) => void) | undefined = undefined;
-	// export let onUpdate: ((event: SortableEvent) => void) | undefined = undefined;
-	// export let onRemove: ((event: SortableEvent) => void) | undefined = undefined;
-	// export let onFilter: ((event: SortableEvent) => void) | undefined = undefined;
-	// export let onSort: ((event: SortableEvent) => void) | undefined = undefined;
-	// export let onClone: ((event: SortableEvent) => void) | undefined = undefined;
-	// export let onMove:
-	// 	| ((evt: MoveEvent, originalEvent: Event) => boolean | -1 | 1 | void)
-	// 	| undefined = undefined;
-	// export let onChange: ((event: SortableEvent) => void) | undefined = undefined;
+	export let touchStartThreshold: number | undefined = undefined;
+	export let setData:
+		| ((dataTransfer: DataTransfer, draggedElement: HTMLElement) => void)
+		| undefined = undefined;
+	export let draggable: string | null = null;
+	export let onChoose: ((event: SortableEvent) => void) | undefined = undefined;
+	export let onUnchoose: ((event: SortableEvent) => void) | undefined = undefined;
+	export let onStart: ((event: SortableEvent) => void) | undefined = undefined;
+	export let onEnd: ((event: SortableEvent) => void) | undefined = undefined;
+	export let onAdd: ((event: SortableEvent) => void) | undefined = undefined;
+	export let onUpdate: ((event: SortableEvent) => void) | undefined = undefined;
+	export let onRemove: ((event: SortableEvent) => void) | undefined = undefined;
+	export let onFilter: ((event: SortableEvent) => void) | undefined = undefined;
+	export let onSort: ((event: SortableEvent) => void) | undefined = undefined;
+	export let onClone: ((event: SortableEvent) => void) | undefined = undefined;
+	export let onMove:
+		| ((evt: MoveEvent, originalEvent: Event) => boolean | -1 | 1 | void)
+		| undefined = undefined;
+	export let onChange: ((event: SortableEvent) => void) | undefined = undefined;
 
-	$: if (list) {
+	let options: Options;
+	onMount(() => {
 		options = {
 			group,
 			sort,
 			disabled,
-			// store,
+			store,
 			handle,
 			swapThreshold,
 			invertSwap,
-			// invertedSwapThreshold,
+			invertedSwapThreshold,
 			removeCloneOnHide,
 			ghostClass,
 			chosenClass,
@@ -123,7 +124,7 @@
 			filter,
 			preventOnFilter,
 			animation,
-			// easing,
+			easing,
 			dropBubble,
 			dragoverBubble,
 			dataIdAttr,
@@ -136,31 +137,54 @@
 			fallbackOffset,
 			emptyInsertThreshold,
 			direction,
-			// touchStartThreshold,
-			// setData,
-			// draggable,
-			// onChoose,
-			// onUnchoose,
-			// onStart,
-			// onEnd,
-			// onAdd,
-			// onUpdate,
-			// onRemove,
-			// onFilter,
-			// onSort,
-			// onClone,
-			// onMove,
-			// onChange,
-			...options
+			touchStartThreshold,
+			setData,
+			onChoose,
+			onUnchoose,
+			onStart,
+			onEnd,
+			onAdd,
+			onUpdate,
+			onRemove,
+			onFilter,
+			onSort,
+			onClone,
+			onMove,
+			onChange
 		};
 
+		if (draggable) {
+			options.draggable = draggable;
+		}
+
+		if (multiDragClass) {
+			try {
+				Sortable.mount(new MultiDrag());
+			} catch (e) {
+				// BUG: Do nothing. Find a better way to handle multiple mounts.
+			}
+
+			options.multiDrag = true;
+			options.selectedClass = multiDragClass;
+			options.fallbackTolerance = 3;
+		}
+
+		if (swapClass) {
+			try {
+				Sortable.mount(new Swap());
+			} catch (e) {
+				// BUG: Do nothing. Find a better way to handle multiple mounts.
+			}
+
+			options.swap = true;
+			options.swapClass = swapClass;
+		}
+
 		sortable = Sortable.create(list, { ...options });
-	}
+	});
 
 	onDestroy(() => {
-		if (sortable) {
-			sortable.destroy();
-		}
+		if (sortable) sortable.destroy();
 	});
 </script>
 

@@ -14,7 +14,7 @@
 	},
 	"devDependencies": {
 		"@bulatdashiev/svelte-slider": "^1.0.3",
-		"@fortawesome/fontawesome-svg-core": "^6.1.1",
+		"@fortawesome/fontawesome-svg-core": "^1.2.26",
 		"@fortawesome/free-solid-svg-icons": "^6.1.1",
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "next",

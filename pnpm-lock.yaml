@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@bulatdashiev/svelte-slider': ^1.0.3
-  '@fortawesome/fontawesome-svg-core': ^6.1.1
+  '@fortawesome/fontawesome-svg-core': ^1.2.26
   '@fortawesome/free-solid-svg-icons': ^6.1.1
   '@sveltejs/adapter-auto': next
   '@sveltejs/kit': next
@@ -32,7 +32,7 @@ dependencies:
 
 devDependencies:
   '@bulatdashiev/svelte-slider': 1.0.3
-  '@fortawesome/fontawesome-svg-core': 6.1.1
+  '@fortawesome/fontawesome-svg-core': 1.2.36
   '@fortawesome/free-solid-svg-icons': 6.1.1
   '@sveltejs/adapter-auto': 1.0.0-next.40
   '@sveltejs/kit': 1.0.0-next.324_sass@1.51.0+svelte@3.48.0
@@ -43,7 +43,7 @@ devDependencies:
   eslint: 7.32.0
   eslint-config-prettier: 8.5.0_eslint@7.32.0
   eslint-plugin-svelte3: 3.4.1_6wevxxng4y4ff26nzlndg2wnpa
-  fontawesome-svelte: 2.0.1_uvcyuhs5rmk3zrlhk2zlead5bi
+  fontawesome-svelte: 2.0.1_43o6ztt6q7umcaf6m5e3nfr6qa
   postcss: 8.4.13
   postcss-load-config: 3.1.4_postcss@8.4.13
   prettier: 2.6.2
@@ -99,18 +99,24 @@ packages:
       - supports-color
     dev: true
 
+  /@fortawesome/fontawesome-common-types/0.2.36:
+    resolution: {integrity: sha512-a/7BiSgobHAgBWeN7N0w+lAhInrGxksn13uK7231n2m8EDPE3BMCl9NZLTGrj9ZXfCmC6LM0QLqXidIizVQ6yg==}
+    engines: {node: '>=6'}
+    requiresBuild: true
+    dev: true
+
   /@fortawesome/fontawesome-common-types/6.1.1:
     resolution: {integrity: sha512-wVn5WJPirFTnzN6tR95abCx+ocH+3IFLXAgyavnf9hUmN0CfWoDjPT/BAWsUVwSlYYVBeCLJxaqi7ZGe4uSjBA==}
     engines: {node: '>=6'}
     requiresBuild: true
     dev: true
 
-  /@fortawesome/fontawesome-svg-core/6.1.1:
-    resolution: {integrity: sha512-NCg0w2YIp81f4V6cMGD9iomfsIj7GWrqmsa0ZsPh59G7PKiGN1KymZNxmF00ssuAlo/VZmpK6xazsGOwzKYUMg==}
+  /@fortawesome/fontawesome-svg-core/1.2.36:
+    resolution: {integrity: sha512-YUcsLQKYb6DmaJjIHdDWpBIGCcyE/W+p/LMGvjQem55Mm2XWVAP5kWTMKWLv9lwpCVjpLxPyOMOyUocP1GxrtA==}
     engines: {node: '>=6'}
     requiresBuild: true
     dependencies:
-      '@fortawesome/fontawesome-common-types': 6.1.1
+      '@fortawesome/fontawesome-common-types': 0.2.36
     dev: true
 
   /@fortawesome/free-solid-svg-icons/6.1.1:
@@ -1137,12 +1143,12 @@ packages:
     resolution: {integrity: sha512-WIWGi2L3DyTUvUrwRKgGi9TwxQMUEqPOPQBVi71R96jZXJdFskXEmf54BoZaS1kknGODoIGASGEzBUYdyMCBJg==}
     dev: true
 
-  /fontawesome-svelte/2.0.1_uvcyuhs5rmk3zrlhk2zlead5bi:
+  /fontawesome-svelte/2.0.1_43o6ztt6q7umcaf6m5e3nfr6qa:
     resolution: {integrity: sha512-6OSbpfBFiQA4fcrj5CvJBx36iVYfdvQY8xEdcsQNhWk6FjdwoiWkjxOIvSsr6v1KI2fM9xr99z7uRJHLSsxreQ==}
     peerDependencies:
       '@fortawesome/fontawesome-svg-core': ^1.2.26
     dependencies:
-      '@fortawesome/fontawesome-svg-core': 6.1.1
+      '@fortawesome/fontawesome-svg-core': 1.2.36
     dev: true
 
   /fraction.js/4.2.0:

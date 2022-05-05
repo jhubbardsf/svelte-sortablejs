@@ -36,7 +36,7 @@ See a live [`demo`](https://svelte-sortablejs.netlify.app/) on Netlify.
 Look in [`src/routes/index.svelte`](https://github.com/jhubbardsf/svelte-sortablejs/blob/master/src/routes/index.svelte) to see Svelte implementations of the [`SortableJS`](https://sortablejs.github.io/Sortable/) examples.
 
 
-## SortableList Parameters
+## SortableList Props
 
 Below is a list explaining the SortableList component parameters. All parameters are optional. Check out the official SortableJS [`github`](https://github.com/SortableJS/Sortable) for more in depth information on the parameters.
 

@@ -12,6 +12,30 @@ See a live [`demo`](https://svelte-sortablejs.netlify.app/) on Netlify.
 
 ---
 
+## Quick Start
+
+1. Install with npm, pnpm, or yarn.
+
+    `npm i -D @jhubbardsf/svelte-sortablejs`
+
+2. Import SortableList from package.
+
+    `import { SortableList } from '@jhubbardsf/svelte-sortablejs'`;
+
+3. Use the SortableList component in your svelte file.
+
+    ```Svelte
+    <SortableList>
+        <div> List Item 1 </div>
+        <div> List Item 2 </div>
+        <div> List Item 3 </div>
+    </SortableList>
+    ```
+
+
+
+---
+
 ## Example Use
 
 Look in [`src/routes/index.svelte`](https://github.com/jhubbardsf/svelte-sortablejs/blob/master/src/routes/index.svelte) to see Svelte implementations of the [`SortableJS`](https://sortablejs.github.io/Sortable/) examples.

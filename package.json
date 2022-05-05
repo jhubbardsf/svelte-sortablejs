@@ -7,6 +7,9 @@
 		"type": "git",
 		"url": "git://github.com/jhubbardsf/svelte-sortablejs.git"
 	},
+	"publishConfig": {
+		"access": "public"
+	},
 	"scripts": {
 		"dev": "svelte-kit dev",
 		"build": "svelte-kit build",
@@ -54,12 +57,9 @@
 		"sortable",
 		"reorder",
 		"drag",
-		"meteor",
-		"angular",
-		"ng-sortable",
-		"react",
-		"vue",
-		"mixin"
+		"svelte-sortable",
+		"sveltre",
+		"sortablejs"
 	],
 	"license": "MIT"
 }

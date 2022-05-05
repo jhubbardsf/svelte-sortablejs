@@ -264,6 +264,20 @@
 	});
 </script>
 
+<!--
+@component
+Svelte wrapper for SortableJS.
+
+- Usage:
+  ```tsx
+  <SortableList>
+	<div>List Item 1</div>
+	<div>List Item 2</div>
+	<div>List Item 3</div>
+  </SortableList>
+	```
+  -->
+
 <div bind:this={list} class={className}>
 	<slot />
 </div>

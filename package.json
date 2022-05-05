@@ -8,7 +8,8 @@
 		"url": "git://github.com/jhubbardsf/svelte-sortablejs.git"
 	},
 	"publishConfig": {
-		"access": "public"
+		"access": "public",
+		"registry": "https://npm.pkg.github.com"
 	},
 	"scripts": {
 		"dev": "svelte-kit dev",

@@ -1,6 +1,6 @@
 import adapter from '@sveltejs/adapter-auto';
 import preprocess from 'svelte-preprocess';
-import sveld from 'vite-plugin-sveld'
+import sveld from 'vite-plugin-sveld';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -11,7 +11,7 @@ const config = {
 	preprocess: [
 		preprocess({
 			postcss: true
-		}),
+		})
 	],
 
 	kit: {
@@ -22,9 +22,7 @@ const config = {
 				noExternal: ['@fortawesome/free-solid-svg-icons']
 			}
 		}
-	},
-
-
+	}
 };
 
 export default config;

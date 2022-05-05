@@ -1,6 +1,6 @@
 {
 	"name": "@jhubbardsf/svelte-sortablejs",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"author": "Josh Hubbard <josh@joshuahubbard.dev> (https://joshuahubbard.dev/)",
 	"description": "A Svelte wrapper for the Sortable.js library",
 	"repository": {

@@ -1,8 +1,8 @@
 # `svelte-sortablejs`
-![npm](https://img.shields.io/npm/v/@jhubbardsf/svelte-sortablejs?style=flat-square)
-![npm bundle size](https://img.shields.io/bundlephobia/minzip/@jhubbardsf/svelte-sortablejs?style=flat-square)
+[![npm](https://img.shields.io/npm/v/@jhubbardsf/svelte-sortablejs?style=flat-square)](https://www.npmjs.com/package/@jhubbardsf/svelte-sortablejs)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/@jhubbardsf/svelte-sortablejs?style=flat-square)](https://www.npmjs.com/package/@jhubbardsf/svelte-sortablejs)
 ![Netlify](https://img.shields.io/netlify/17ccb8e4-9fc6-4654-802b-688c7cd125c3?style=flat-square)
-![GitHub last commit](https://img.shields.io/github/last-commit/jhubbardsf/svelte-sortablejs?style=flat-square)
+[![GitHub last commit](https://img.shields.io/github/last-commit/jhubbardsf/svelte-sortablejs?style=flat-square)](https://github.com/jhubbardsf/svelte-sortablejs)
 
 Unofficial Svelte package for the SortableJS library.
 

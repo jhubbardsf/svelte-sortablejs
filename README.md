@@ -3,6 +3,7 @@
 [![npm bundle size](https://img.shields.io/bundlephobia/minzip/@jhubbardsf/svelte-sortablejs?style=flat-square)](https://www.npmjs.com/package/@jhubbardsf/svelte-sortablejs)
 ![Netlify](https://img.shields.io/netlify/17ccb8e4-9fc6-4654-802b-688c7cd125c3?style=flat-square)
 [![GitHub last commit](https://img.shields.io/github/last-commit/jhubbardsf/svelte-sortablejs?style=flat-square)](https://github.com/jhubbardsf/svelte-sortablejs)
+<a href="https://www.buymeacoffee.com/jhubbard"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=jhubbard&button_colour=FFDD00&font_colour=000000&font_family=Poppins&outline_colour=000000&coffee_colour=ffffff" height=20 /></a>
 
 Unofficial Svelte package for the SortableJS library.
 
